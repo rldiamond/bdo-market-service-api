@@ -14,14 +14,6 @@ import java.util.Optional;
 public interface MarketApi {
 
     /**
-     * Fetches a {@link BdoItem} from the API by name. Will return an empty Optional if the item is not found.
-     *
-     * @param itemName The exact name of the item to fetch from the API.
-     * @return A nullable Optional containing the BdoItem requested.
-     */
-    Optional<BdoItem> getItemByName(String itemName);
-
-    /**
      * Fetches a {@link BdoItem} from the API by ID. Will return an empty Optional if the item is not found.
      *
      * @param id The ID of the item to fetch from the API.

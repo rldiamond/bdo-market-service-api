@@ -43,14 +43,6 @@ public class MarketApiClient implements MarketApi {
      * {@inheritDoc}
      */
     @Override
-    public Optional<BdoItem> getItemByName(String itemName) {
-        return Optional.empty();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public Optional<BdoItem> getItemById(long id) {
         return Optional.empty();
     }

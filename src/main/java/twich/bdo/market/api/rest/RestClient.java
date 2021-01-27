@@ -3,6 +3,7 @@ package twich.bdo.market.api.rest;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -61,6 +62,23 @@ public class RestClient {
                 .path(endpoint)
                 .request(MediaType.APPLICATION_ATOM_XML_TYPE)
                 .get();
+    }
+
+    /**
+     * Perform a POST request at the provided endpoint and return a generic response.
+     *
+     * @param endpoint    The endpoint to request.
+     * @param objectClass The class of the object to return.
+     * @param putObject   The object to send in the POST call.
+     * @param <T>         The object returned.
+     * @return Return the provided object retrieved from the REST call.
+     */
+    public <T> T post(String endpoint, Class<T> objectClass, Object putObject) {
+        return CLIENT
+                .target(BASE_URL)
+                .path(endpoint)
+                .request(MediaType.APPLICATION_JSON)
+                .post(Entity.entity(putObject, MediaType.APPLICATION_JSON), objectClass);
     }
 
 }
