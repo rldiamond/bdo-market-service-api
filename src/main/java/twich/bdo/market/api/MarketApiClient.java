@@ -14,8 +14,8 @@ public class MarketApiClient implements MarketApi {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MarketApiClient.class);
 
-    private static final String GET_ITEM_BY_NAME_ENDPOINT = "/bdo/market/item/name=?";
-    private static final String GET_ITEM_BY_ID_ENDPOINT = "/bdo/market/item/id=?";
+    private static final String GET_ITEM_BY_NAME_ENDPOINT = "/bdo/market/item/name=";
+    private static final String GET_ITEM_BY_ID_ENDPOINT = "/bdo/market/item/id=";
 
     private final RestClient myRestClient;
 
@@ -33,8 +33,6 @@ public class MarketApiClient implements MarketApi {
      * @return Fully constructed Market API Client
      */
     public static MarketApiClient build(String address) {
-        // Construct the rest client
-        //todo
         RestClient restClient = RestClient.build(address);
         return new MarketApiClient(restClient);
     }
@@ -44,7 +42,8 @@ public class MarketApiClient implements MarketApi {
      */
     @Override
     public Optional<BdoItem> getItemByName(String itemName) {
-        return Optional.empty();
+
+        return Optional.ofNullable(myRestClient.get(GET_ITEM_BY_NAME_ENDPOINT + itemName, BdoItem.class));
     }
 
     /**
@@ -52,6 +51,6 @@ public class MarketApiClient implements MarketApi {
      */
     @Override
     public Optional<BdoItem> getItemById(long id) {
-        return Optional.empty();
+        return Optional.ofNullable(myRestClient.get(GET_ITEM_BY_ID_ENDPOINT + id, BdoItem.class));
     }
 }
